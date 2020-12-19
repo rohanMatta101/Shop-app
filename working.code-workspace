@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "views"
+		},
+		{
+			"path": "CSS"
+		},
+		{
+			"path": "Controllers"
+		},
+		{
+			"path": "Models"
+		},
+		{
+			"path": "DATA"
+		},
+		{
+			"path": "Util"
+		},
+		{
+			"path": "Middleware"
+		},
+		{
+			"path": "images"
+		}
+	],
+	"settings": {}
+}

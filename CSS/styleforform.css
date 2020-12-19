@@ -1,0 +1,31 @@
+.form-control {
+    position: relative;
+    right:600px;
+    top:140px;
+  }
+  
+  .form-control label,
+  .form-control input,
+  .form-control textarea {
+    width: 100%;
+    display: flex;
+    margin:1.5rem;
+    
+  }
+  
+  .form-control input,
+  .form-control textarea {
+    border: 1px solid #a1a1a1;
+    font: inherit;
+    border-radius: 2px;
+    border: 2px solid #035aa6;
+  }
+  
+  .form-control input:focus,
+  .form-control textarea:focus {
+    outline-color: #00695c;
+  }
+  .form-control input.invalid{
+    border-color: red;
+  }
+  

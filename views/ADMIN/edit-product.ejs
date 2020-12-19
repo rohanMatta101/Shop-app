@@ -1,0 +1,64 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="styleforform.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a href="/">Shop</a></li>
+                <li class="main-header__item"><a href="/products">Products</a></li>
+                <% if(isAuthenticated) { %>
+                <li class="main-header__item"><a href="/cart">Cart</a></li>
+                <li class="main-header__item"><a href="/order">Orders</a></li>
+               <li class="main-header__item"><a href="/add-product">Add-product</a></li>
+                <li class="main-header__item"><a href="/XX">Admin-Products</a></li>
+                <% } %>
+            </ul>
+            <ul class="main-header__item-list-auth">
+                <% if(!isAuthenticated) { %>
+                <li class="main-header__item"><a href="/login">LOGIN</a></li>
+                <li class="main-header__item"><a href="/signup">SIGNUP</a></li>
+            </ul>        
+                <% } else { %>
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                   <button class="addproductlogout" type="submit">LOGOUT</button>
+                </form>
+                <% } %>
+        </nav>
+
+    <main>
+        <% if (errorMessage){ %>
+            <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %> 
+        <form class="product-form" action="<% if(editing) {%> /edit-product <%} else {%> /add-product <%} %> " method="POST" enctype="multipart/form-data">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input class="<%= invaliderr.find(e => e.param=== 'title') ? 'invalid' : '' %>"
+                type="text" name="title" value="<% if(editing || hasError) {%> <%= product.title %> <%} %>">
+            </div>
+            <div class="form-control">
+                <label for="imageUrl">Image</label>
+                <input type="file" name="imageUrl">
+            </div>
+            <div class="form-control">
+                <label for="price">Price</label>
+                <input class="<%= invaliderr.find(e => e.param=== 'price') ? 'invalid' : '' %>"
+                type="number" name="price" step="0.01" value="<% if(editing || hasError) {%><%=product.price%><%}%>">
+            </div>
+            <div class="form-control">
+                <label for="description">Description</label>
+                <textarea class="<%= invaliderr.find(e => e.param=== 'description') ? 'invalid' : '' %>"
+                name="description" rows="5"><% if(editing || hasError) {%><%=product.description%><%}%></textarea>
+            </div>
+            <% if(editing) { %>
+                <input type="hidden" value="<%= product._id %>" name="myid">
+
+            <% } %>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn-add" type="submit"><% if(editing) {%> UPDATE-PRODUCT <%} else {%> ADD-PRODUCT <%} %></button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>

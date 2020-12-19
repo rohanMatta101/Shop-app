@@ -1,0 +1,51 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-header__nav">
+            <ul class="main-header__item-list">
+                <li class="main-header__item"><a href="/">Shop</a></li>
+                <li class="main-header__item"><a href="/products">Products</a></li>
+                <% if(isAuthenticated) { %>
+                <li class="main-header__item"><a href="/cart">Cart</a></li>
+                <li class="main-header__item"><a href="/order">Orders</a></li>
+               <li class="main-header__item"><a href="/add-product">Add-product</a></li>
+                <li class="main-header__item"><a href="/XX">Admin-Products</a></li>
+                <% } %>
+            </ul>
+            <ul class="main-header__item-list-auth">
+                <% if(!isAuthenticated) { %>
+                <li class="main-header__item"><a href="/login">LOGIN</a></li>
+                <li class="main-header__item"><a href="/signup">SIGNUP</a></li>
+            </ul>        
+                <% } else { %>
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                   <button class="orderlogout" type="submit">LOGOUT</button>
+                </form>
+                <% } %>
+        </nav>
+    <main>
+        <% if(order.length<=0) { %>
+        <h1 class="order">Sorry ! You have not placed any orders</h1>
+        <% } else { %>
+           <ul>
+               
+               <% for(od of order) { %>
+                <div class="orderstyle">
+                  <li><h1 ># <%= od._id %></h1></li><a class="invoice" href="/order/<%= od._id %>">INVOICE</a>
+                  <ul>
+                      <% od.products.forEach(item=>{ %>
+                      <li><%= item.product.title %> (quantity:<%= item.quantity %>)</li>
+                      
+                      <% }); %>
+                      <hr>
+                  </ul>
+                </div>      
+                  
+               <% } %> 
+           </ul>
+        <% } %>    
+    </main>
+    <%- include('../includes/end.ejs') %>

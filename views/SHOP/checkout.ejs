@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <%- include('../includes/nav.ejs') %>
+    <main>
+        <% if(product.length>0) { %>
+            <ul>
+                <% for(prod of product) { %>
+                <li><%= prod.productid.title %></li>
+                <li>QUANTITY:<%= prod.quantity %></li>
+                <% } %>
+            </ul>
+        <% } %>    
+            <!--<form action="/create-order" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button type="submit">ORDER NOW!</button>
+            </form>-->
+            <div>
+                <h2><%=totalsum %></h2>
+            </div>     
+        <div>
+            <button id="order-btn">Order!</button>
+            <script src="https://js.stripe.com/v3/"></script>
+            <script>
+                var stripe = Stripe('pk_test_51GvLm2C7660DAtoMCe0waTWHAyWc2qdTwnzcLXyX0PcR6W7kVWgkQYIJAqUcV99kdUvz1Nl7lWoRMSer29dFg8S900GKobsLKp');
+            
+               var oderBtn=document.getElementById('order-btn');
+               oderBtn.addEventListener("click",function(){
+                   stripe.redirectToCheckout({
+                       sessionId:'<%= sessionTd %>'
+                   })
+               })
+        </script>  
+        </div>
+
+    </main>
+    <%- include('../includes/end.ejs') %>

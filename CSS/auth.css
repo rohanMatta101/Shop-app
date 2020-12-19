@@ -1,0 +1,61 @@
+
+.login-form{
+    
+        width: 20rem;
+        max-width: 90%;
+        margin: auto;
+        display: block;
+}
+.login-form input{
+    border: 2px solid  #035aa6;
+    width: 100%;
+    margin-top: 2px;
+}
+.loginbtn{
+    border: 1px solid #035aa6;
+    color: #035aa6;
+    background-color: white;
+    border-radius: 3px;
+    padding: 0.25rem 1rem;
+    position: relative;
+    top:150px;
+    right: 560px;
+    font-size: medium;
+}
+.loginbtn:hover{
+    background-color: #035aa6;
+    color:white;
+}
+.reset a{
+    position: relative;
+    top:130px;
+    right:440px;
+    color:#035aa6;
+}
+.reset a:hover{
+    color:#ffd31d;
+}
+.signupbtn{
+    border: 2px solid #035aa6;
+    color: #035aa6;
+    background-color: white;
+    border-radius: 4px;
+    padding: 0.25rem 1rem;
+    font-size: medium;
+    position: relative;
+    top:150px;
+    right:480px;
+}
+.signupbtn:hover{
+    background-color: #035aa6;
+    color:white;
+}
+.main-header__item-list-auth{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+  left:350px;
+
+}

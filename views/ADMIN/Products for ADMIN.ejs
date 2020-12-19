@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="styleforshop.css">
+<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <header>
+    <%- include('../includes/nav.ejs') %>
+    </header>
+    <main>
+        <h1>My Products</h1>
+        <p>List of all the products...</p>
+        <% if(prods.length>0) { %>
+         <div class="grid">
+             <% for(let product of prods) { %>
+            <article class="card">
+                <header class="card__header">
+                    <h1 ><%= product.title %></h1>
+                </header>
+                <!--<div class="card__image">
+                    <img src="<%= product.imageUrl %>" alt="A Book">
+                </div>-->
+                <div class="card__content">
+                    <h2>$<%= product.price %></h2>
+                    <p><%= product.description %></p>
+                </div>
+                <div class="card__actions">
+                    <a class="deleteadmin" href="/edit-product/<%= product._id %>?edit=true">EDIT</a>
+                    <form action="/delete-product" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <input type="hidden" value="<%= product._id %>" name="prid">
+                    <button type="submit" class="deleteadminbtn">DELETE</button>
+                    </form>
+                </div>
+            </article>
+            <% } %>
+        </div>
+        <% } else { %>
+           <h1>NO PRODUCTS!</h1>
+        <% } %>    
+    </main>
+    <%- include('../includes/end.ejs') %>
