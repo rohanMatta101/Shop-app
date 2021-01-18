@@ -195,8 +195,8 @@ form {
   padding: 0.25rem 1rem;
   text-decoration: none;
   font: inherit;
-  border: 1px solid #00695c;
-  color: #00695c;
+  border: 1px solid #035aa6;
+  color: #035aa6;
   background: white;
   border-radius: 3px;
   cursor: pointer;
@@ -223,7 +223,7 @@ form {
 
 .btn:hover,
 .btn:active {
-  background-color: #00695c;
+  background-color: #035aa6;
   color: white;
 }
 .user-message{

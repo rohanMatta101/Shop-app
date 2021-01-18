@@ -2,7 +2,7 @@ const Product = require('../Models/data.js');
 const mongodb=require('mongodb');
 const { validationResult }=require('express-validator');
 const mongoose=require('mongoose');
-const fileHelper=require('../Util/filedelete');
+const fileHelper=require('../Util/file');
 
 const objectid=mongodb.ObjectId;
 
